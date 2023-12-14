@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>テキスト入力・編集</title>
+    <style>
+        /* CSS スタイルを追加 */
+        #editable {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="editable" contenteditable="true">
+        <!-- 編集可能なテキストエリア -->
+        <p>ここをクリックしてテキストを入力、編集できます。</p>
+    </div>
+
+    <script>
+        // テキストエリアの内容を保存
+        const editable = document.getElementById('editable');
+
+        // 変更があるたびに内容を保存
+        editable.addEventListener('input', function() {
+            localStorage.setItem('text', editable.innerHTML);
+        });
+
+        // ページ読み込み時に以前の内容を表示
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedText = localStorage.getItem('text');
+            if (storedText) {
+                editable.innerHTML = storedText;
+            }
+        });
+    </script>
+</body>
+</html>
