@@ -3,11 +3,21 @@
 <head>
     <title>テキスト入力・編集</title>
     <style>
-        /* CSS スタイルを追加 */
+        /* CSS スタイルを変更 */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
         #editable {
             border: 1px solid #ccc;
             padding: 10px;
-            margin: 20px;
+            width: 60%; /* 9:16の比率に合わせて調整 */
+            max-width: 600px; /* 最大幅を指定 */
+            margin: 10%; /* 1割の余白 */
             min-height: 100px;
         }
     </style>
@@ -37,3 +47,4 @@
     </script>
 </body>
 </html>
+
