@@ -1,50 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>テキスト入力・編集</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:√2の枠線</title>
     <style>
-        /* CSS スタイルを変更 */
         body {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh; /* 画面の高さいっぱいに要素を表示 */
+            margin: 5px; /* ページの余白を 5px に設定 */
         }
 
-        #editable {
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: 60%; /* 9:16の比率に合わせて調整 */
-            max-width: 600px; /* 最大幅を指定 */
-            margin: 10%; /* 1割の余白 */
-            min-height: 100px;
+        .box {
+            position: relative;
+            width: 95vmin; /* 画面の幅または高さの小さい方の95%に合わせて要素を表示 */
+            height: calc(95vmin * sqrt(2)); /* 高さを計算して指定 */
+            border: 1px solid black; /* 枠線のスタイルを指定 */
+            display: flex;
+            align-items: flex-start; /* 上端に寄せる */
+            justify-content: flex-start; /* 左端に寄せる */
+            overflow: hidden; /* テキストが枠外に出ないようにする */
+            margin: 5vmin; /* 画面の端との余白を設定 */
+            padding: 5vmin; /* 上下左右の余白を設定 */
+        }
+
+        .text {
+            width: 100%; /* テキストエリアの幅を100%に設定 */
+            height: 100%; /* テキストエリアの高さを100%に設定 */
+            resize: none; /* テキストエリアのリサイズを無効にする */
+            border: none; /* 枠線をなくす */
+            outline: none; /* アウトラインをなくす */
+            font-size: 16px; /* フォントサイズを調整 */
+            box-sizing: border-box; /* paddingを含めたボックスモデル */
         }
     </style>
 </head>
 <body>
-    <div id="editable" contenteditable="true">
-        <!-- 編集可能なテキストエリア -->
-        <p>ここをクリックしてテキストを入力、編集できます。</p>
+    <!-- 枠線を付けたい要素にクラスを指定 -->
+    <div class="box" contenteditable="true">
+        <!-- 枠線の中に直接テキストを入力できる要素 -->
     </div>
-
-    <script>
-        // テキストエリアの内容を保存
-        const editable = document.getElementById('editable');
-
-        // 変更があるたびに内容を保存
-        editable.addEventListener('input', function() {
-            localStorage.setItem('text', editable.innerHTML);
-        });
-
-        // ページ読み込み時に以前の内容を表示
-        document.addEventListener('DOMContentLoaded', function() {
-            const storedText = localStorage.getItem('text');
-            if (storedText) {
-                editable.innerHTML = storedText;
-            }
-        });
-    </script>
 </body>
 </html>
-
